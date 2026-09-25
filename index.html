@@ -1,252 +1,41 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#05070b">
-<title>MAX REALMS 6.0 — TRUE 3D</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#05070b"><title>MAX REALMS 6.0 — TRUE 3D</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#04070b;color:#f5f1e8;font-family:Inter,Segoe UI,Arial,sans-serif}
-button{font:inherit;font-weight:800;color:#fff;background:#111b26;border:1px solid #31465b;border-radius:12px;padding:12px 16px;cursor:pointer}
-button:hover{filter:brightness(1.12)}.primary{background:linear-gradient(135deg,#b77720,#efc66c);color:#171006;border:0}
-header{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;background:#050b12;border-bottom:1px solid #ffffff10;position:relative;z-index:30}
-.brand{font-weight:900;letter-spacing:.14em}.brand b{color:#e8b75b}.brand sup{font-size:8px;color:#91a3b2;margin-left:5px}.stats{display:flex;gap:14px;font-size:13px}
-.soundToggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;padding:0;border-radius:50%;background:#0d1720;border:1px solid #3a4d5d;font-size:18px;box-shadow:0 12px 28px rgba(0,0,0,.28)}
-.soundToggle.muted{background:#1a1010;border-color:#6d3d43;color:#f8cfcf}
-.screen{display:none;height:calc(100vh - 58px);position:relative}.screen.active{display:block}
-#menu3d,#game3d{position:absolute;inset:0}#menu3d canvas,#game3d canvas{width:100%;height:100%;display:block}
-.menuCopy{position:relative;z-index:5;padding:8vh 6vw;max-width:760px;pointer-events:none}.menuCopy button{pointer-events:auto}
-.tag{font-size:10px;letter-spacing:.25em;color:#e8b75b;font-weight:900}.menuCopy h1{font-size:clamp(50px,8vw,105px);line-height:.82;margin:15px 0 22px;text-shadow:0 7px 35px #000}
-.menuCopy h1 em{font-style:normal;color:#e8b75b}.menuCopy p{max-width:560px;color:#b0bdc8;line-height:1.55}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
-.card{position:absolute;z-index:5;right:5vw;bottom:5vh;background:#06101be8;border:1px solid #ffffff18;border-radius:18px;padding:16px 22px;text-align:center;backdrop-filter:blur(8px)}
-.card div{font-size:45px}.card b,.card small{display:block}.card small{font-size:11px;color:#93a2b0;margin-top:5px}
-.hud{position:absolute;z-index:10;left:14px;top:14px;display:flex;gap:7px}.hud div{background:#040b13df;border:1px solid #ffffff18;padding:8px 11px;border-radius:10px;min-width:88px}
-.hud small{display:block;font-size:7px;letter-spacing:.12em;color:#8c9dab}.powers{position:absolute;z-index:10;left:14px;top:70px;display:flex;gap:6px}.powers span{background:#040b13df;border:1px solid #ffffff18;padding:6px 8px;border-radius:10px;display:inline-block;opacity:.5;transition:all .15s ease}.powers span.on{opacity:1;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 18px rgba(255,208,93,.5)}
-#realm{position:absolute;z-index:10;left:50%;top:16px;transform:translateX(-50%);font-size:10px;font-weight:900;letter-spacing:.2em;text-shadow:0 2px 8px #000}
-#pause{position:absolute;z-index:10;right:14px;top:14px}.overlay{display:none;position:absolute;z-index:50;inset:0;background:#020509e5;place-items:center}.overlay.show{display:grid}
-.modal{background:#0b151f;border:1px solid #ffffff18;border-radius:18px;padding:24px;text-align:center;min-width:min(360px,90vw)}.modal p{color:#a8b6c2}
-#bossHud{display:none;position:absolute;z-index:10;top:48px;left:50%;transform:translateX(-50%);width:min(360px,55vw);font-size:8px;text-align:center;letter-spacing:.14em}
-#bossHud.show{display:block}#bossHud div{height:7px;background:#2d1517;border-radius:8px;overflow:hidden;margin-top:4px}#bossBar{display:block;height:100%;background:#df5a48;width:100%}
-#toast{position:absolute;z-index:10;left:50%;top:100px;transform:translateX(-50%);font-weight:900;color:#ffe3a0;text-shadow:0 2px 8px #000}
-.result{max-width:720px;margin:auto;text-align:center;padding:8vh 18px}.result h2{font-size:clamp(34px,5vw,58px)}.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:25px 0}
-.resultGrid span{background:#0d1722;border-radius:12px;padding:14px;color:#8e9eac;font-size:10px}.resultGrid b{display:block;color:#fff;font-size:19px;margin-top:5px}
-#loading{position:absolute;z-index:100;inset:0;background:#05080d;display:grid;place-items:center;text-align:center}#loading.hide{display:none}#loading b{color:#e8b75b;font-size:22px}
-#error{display:none;color:#ffb3aa;max-width:520px;padding:12px;line-height:1.5}#error.show{display:block}
-@media(max-width:680px){.menuCopy{padding-top:6vh}.menuCopy h1{font-size:49px}.card{width:145px;right:4vw;bottom:3vh;padding:10px}.card div{font-size:32px}.hud div:nth-child(4){display:none}.hud div:nth-child(5){display:none}.brand{letter-spacing:.1em}} 
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#04070b;color:#f5f1e8;font-family:Inter,Segoe UI,Arial,sans-serif}button{font:inherit;font-weight:800;color:#fff;background:#111b26;border:1px solid #31465b;border-radius:12px;padding:12px 16px;cursor:pointer}button:hover{filter:brightness(1.12)}.primary{background:linear-gradient(135deg,#b77720,#efc66c);color:#171006;border:0}header{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;background:#050b12;border-bottom:1px solid #ffffff10;position:relative;z-index:30}.brand{font-weight:900;letter-spacing:.14em}.brand b{color:#e8b75b}.brand sup{font-size:8px;color:#91a3b2;margin-left:5px}.stats{display:flex;gap:14px;font-size:13px}.soundToggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;padding:0;border-radius:50%;background:#0d1720;border:1px solid #3a4d5d;font-size:18px}.soundToggle.muted{background:#1a1010;border-color:#6d3d43;color:#f8cfcf}.screen{display:none;height:calc(100vh - 58px);position:relative}.screen.active{display:block}#menu3d,#game3d{position:absolute;inset:0}#menu3d canvas,#game3d canvas{width:100%;height:100%;display:block}.menuCopy{position:relative;z-index:5;padding:8vh 6vw;max-width:760px;pointer-events:none}.menuCopy button{pointer-events:auto}.tag{font-size:10px;letter-spacing:.25em;color:#e8b75b;font-weight:900}.menuCopy h1{font-size:clamp(50px,8vw,105px);line-height:.82;margin:15px 0 22px;text-shadow:0 7px 35px #000}.menuCopy h1 em{font-style:normal;color:#e8b75b}.menuCopy p{max-width:560px;color:#b0bdc8;line-height:1.55}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.card{position:absolute;z-index:5;right:5vw;bottom:5vh;background:#06101be8;border:1px solid #ffffff18;border-radius:18px;padding:16px 22px;text-align:center;backdrop-filter:blur(8px)}.card div{font-size:45px}.card b,.card small{display:block}.card small{font-size:11px;color:#93a2b0;margin-top:5px}.hud{position:absolute;z-index:10;left:14px;top:14px;display:flex;gap:7px}.hud div{background:#040b13df;border:1px solid #ffffff18;padding:8px 11px;border-radius:10px;min-width:88px}.hud small{display:block;font-size:7px;letter-spacing:.12em;color:#8c9dab}.powers{position:absolute;z-index:10;left:14px;top:70px;display:flex;gap:6px}.powers span{background:#040b13df;border:1px solid #ffffff18;padding:6px 8px;border-radius:10px;display:inline-block;opacity:.5;transition:all .15s ease}.powers span.on{opacity:1;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 18px rgba(255,208,93,.5)}#realm{position:absolute;z-index:10;left:50%;top:16px;transform:translateX(-50%);font-size:10px;font-weight:900;letter-spacing:.2em;text-shadow:0 2px 8px #000}#pause{position:absolute;z-index:10;right:14px;top:14px}.overlay{display:none;position:absolute;z-index:50;inset:0;background:#020509e5;place-items:center}.overlay.show{display:grid}.modal{background:#0b151f;border:1px solid #ffffff18;border-radius:18px;padding:24px;text-align:center;min-width:min(360px,90vw)}.modal p{color:#a8b6c2}#bossHud{display:none;position:absolute;z-index:10;top:48px;left:50%;transform:translateX(-50%);width:min(360px,55vw);font-size:8px;text-align:center;letter-spacing:.14em}#bossHud.show{display:block}#bossHud div{height:7px;background:#2d1517;border-radius:8px;overflow:hidden;margin-top:4px}#bossBar{display:block;height:100%;background:#df5a48;width:100%}#toast{position:absolute;z-index:10;left:50%;top:100px;transform:translateX(-50%);font-weight:900;color:#ffe3a0;text-shadow:0 2px 8px #000}.result{max-width:720px;margin:auto;text-align:center;padding:8vh 18px}.result h2{font-size:clamp(34px,5vw,58px)}.resultGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:25px 0}.resultGrid span{background:#0d1722;border-radius:12px;padding:14px;color:#8e9eac;font-size:10px}.resultGrid b{display:block;color:#fff;font-size:19px;margin-top:5px}#loading{position:absolute;z-index:100;inset:0;background:#05080d;display:grid;place-items:center;text-align:center}#loading.hide{display:none}#loading b{color:#e8b75b;font-size:22px}#error{display:none;color:#ffb3aa;max-width:520px;padding:12px;line-height:1.5}#error.show{display:block}@media(max-width:680px){.menuCopy{padding-top:6vh}.menuCopy h1{font-size:49px}.card{width:145px;right:4vw;bottom:3vh;padding:10px}.card div{font-size:32px}.hud div:nth-child(4){display:none}.hud div:nth-child(5){display:none}.brand{letter-spacing:.1em}}
 </style>
 </head>
 <body>
-<header>
-  <div class="brand">MAX <b>REALMS</b><sup>6.0</sup></div>
-  <div class="stats">
-    <span>💎 <b id="wallet">800</b></span>
-    <span>🏆 <b id="trophies">0</b></span>
-    <span>⭐ Nv. <b id="level">1</b></span>
-  </div>
-  <button id="soundToggle" class="soundToggle" aria-label="Alternar som" aria-pressed="true">🔊</button>
-</header>
-
-<section id="menu" class="screen active">
-  <div id="menu3d"></div>
-  <div id="loading"><div><b>MAX REALMS 6.0</b><p>Carregando mundo 3D...</p><div id="error"></div></div></div>
-  <div class="menuCopy"><div class="tag">TRUE 3D EDITION</div><h1>ENTRE NOS<br><em>REINOS</em></h1><p>Corrida em terceira pessoa com profundidade real, obstáculos volumétricos, iluminação, som e clima épico.</p><div class="actions"><button id="play" class="primary">JOGAR</button><button id="menuSound">TESTAR SOM</button></div></div>
-  <div class="card"><div id="heroIcon">⚔️</div><b>Kael</b><small id="best">Recorde 0 m</small></div>
-</section>
-
-<section id="game" class="screen">
-  <div id="game3d"></div>
-  <div class="hud"><div><small>DISTÂNCIA</small><b id="distance">0 m</b></div><div><small>CRISTAIS</small><b>💎 <span id="coins">0</span></b></div><div><small>VIDA</small><b id="life">❤❤❤</b></div><div><small>MULT</small><b id="mult">x1</b></div></div>
-  <div class="powers"><span id="shield">🛡️</span><span id="magnet">🧲</span><span id="boost">⚡</span></div>
-  <div id="realm">FORTALEZA CELESTE</div><div id="bossHud"><b>🐲 GUARDIÃO</b><div><i id="bossBar"></i></div></div><button id="pause">Ⅱ</button><div id="toast"></div>
-  <div id="tutorial" class="overlay"><div class="modal"><h2>COMO JOGAR</h2><p>← → trocar faixa · ↑ pular · ↓ deslizar</p><p>No celular: deslize o dedo.</p><button id="tutorialOk" class="primary">ENTENDI</button></div></div>
-  <div id="pauseOverlay" class="overlay"><div class="modal"><h2>PAUSADO</h2><button id="resume" class="primary">CONTINUAR</button><button id="quit">SAIR</button></div></div>
-</section>
-
+<header><div class="brand">MAX <b>REALMS</b><sup>6.0</sup></div><div class="stats"><span>💎 <b id="wallet">800</b></span><span>🏆 <b id="trophies">0</b></span><span>⭐ Nv. <b id="level">1</b></span></div><button id="soundToggle" class="soundToggle" aria-label="Alternar som" aria-pressed="true">🔊</button></header>
+<section id="menu" class="screen active"><div id="menu3d"></div><div id="loading"><div><b>MAX REALMS 6.0</b><p>Carregando mundo 3D...</p><div id="error"></div></div></div><div class="menuCopy"><div class="tag">TRUE 3D EDITION</div><h1>ENTRE NOS<br><em>REINOS</em></h1><p>Corrida em terceira pessoa com profundidade real, obstáculos volumétricos, iluminação, som e clima épico.</p><div class="actions"><button id="play" class="primary">JOGAR</button><button id="menuSound">TESTAR SOM</button></div></div><div class="card"><div id="heroIcon">⚔️</div><b>Kael</b><small id="best">Recorde 0 m</small></div></section>
+<section id="game" class="screen"><div id="game3d"></div><div class="hud"><div><small>DISTÂNCIA</small><b id="distance">0 m</b></div><div><small>CRISTAIS</small><b>💎 <span id="coins">0</span></b></div><div><small>VIDA</small><b id="life">❤❤❤</b></div><div><small>MULT</small><b id="mult">x1</b></div></div><div class="powers"><span id="shield">🛡️</span><span id="magnet">🧲</span><span id="boost">⚡</span></div><div id="realm">FORTALEZA CELESTE</div><div id="bossHud"><b>🐲 GUARDIÃO</b><div><i id="bossBar"></i></div></div><button id="pause">Ⅱ</button><div id="toast"></div><div id="tutorial" class="overlay"><div class="modal"><h2>COMO JOGAR</h2><p>← → trocar faixa · ↑ pular · ↓ deslizar</p><p>No celular: deslize o dedo.</p><button id="tutorialOk" class="primary">ENTENDI</button></div></div><div id="pauseOverlay" class="overlay"><div class="modal"><h2>PAUSADO</h2><button id="resume" class="primary">CONTINUAR</button><button id="quit">SAIR</button></div></div></section>
 <section id="result" class="screen"><div class="result"><div class="tag">RESULTADO</div><h2>Jornada encerrada</h2><div class="resultGrid"><span>Distância<b id="fd">0 m</b></span><span>Cristais<b id="fc">0</b></span><span>Troféus<b id="ft">0</b></span></div><button id="again" class="primary">JOGAR NOVAMENTE</button><button id="home">MENU</button></div></section>
-
 <script type="module">
 (async()=>{
-const err=document.querySelector("#error");
-let THREE;
-try{THREE=await import("https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js")}
-catch(e){err.classList.add("show");err.textContent="Não foi possível carregar o motor 3D. Verifique a conexão e atualize a página.";throw e}
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
-const DEF={coins:800,xp:0,best:0,trophies:0,tutorial:false};
-let S={...DEF};try{Object.assign(S,JSON.parse(localStorage.getItem("maxRealms6")||"{}"))}catch(e){}
-const realms=[
-["FORTALEZA CELESTE",0x7890a6,0x20344b,0x2f3036,0xd0aa63],
-["FLORESTA DE CRISTAL",0x5a8979,0x173b35,0x24352f,0x64e2c1],
-["DESERTO DE CINZAS",0xc27c50,0x58362e,0x5a453b,0xf2b45d],
-["CIDADE CONGELADA",0x9bc0d4,0x304e65,0x4c6573,0xc8f2ff],
-["RUÍNAS LUNARES",0x6c648b,0x2b2845,0x363247,0xbda8ef]];
-function save(){localStorage.setItem("maxRealms6",JSON.stringify(S));ui()}
-function ui(){const lvl=1+Math.floor(Math.sqrt(S.xp/220));$("#wallet").textContent=S.coins;$("#trophies").textContent=S.trophies;$("#level").textContent=lvl;$("#best").textContent="Recorde "+S.best+" m"}
-function show(id){$$(".screen").forEach(e=>e.classList.remove("active"));$("#"+id).classList.add("active")}
-
-let audioCtx=null,musicGain=null,sfxGain=null,musicTimer=null,musicBeat=0;
-const audioState={enabled:true};
-function ensureAudio(){
-  if(audioCtx)return;
-  const Ctx=window.AudioContext||window.webkitAudioContext;
-  if(!Ctx)return;
-  audioCtx=new Ctx();
-  musicGain=audioCtx.createGain();
-  sfxGain=audioCtx.createGain();
-  musicGain.gain.value=0.12;
-  sfxGain.gain.value=0.20;
-  musicGain.connect(audioCtx.destination);
-  sfxGain.connect(audioCtx.destination);
-}
-function updateSoundButton(){
-  const btn=$("#soundToggle");
-  if(!btn)return;
-  btn.textContent=audioState.enabled?"🔊":"🔇";
-  btn.classList.toggle("muted",!audioState.enabled);
-  btn.setAttribute("aria-pressed", String(audioState.enabled));
-  if(!audioCtx)return;
-  const target=audioState.enabled?1:0;
-  const now=audioCtx.currentTime;
-  musicGain.gain.setTargetAtTime(audioState.enabled?0.12:0, now, 0.08);
-  sfxGain.gain.setTargetAtTime(audioState.enabled?0.20:0, now, 0.08);
-}
-function playTone({freq=220,duration=.18,type="sine",gain=.05,slideTo=null,when=0,pan=0}={}){
-  if(!audioState.enabled||!audioCtx)return;
-  const start=audioCtx.currentTime+when;
-  const osc=audioCtx.createOscillator();
-  const gainNode=audioCtx.createGain();
-  const panner=audioCtx.createStereoPanner ? audioCtx.createStereoPanner() : null;
-  osc.type=type;
-  osc.frequency.setValueAtTime(freq,start);
-  if(slideTo){osc.frequency.exponentialRampToValueAtTime(Math.max(20,slideTo),start+duration)}
-  gainNode.gain.setValueAtTime(0.0001,start);
-  gainNode.gain.exponentialRampToValueAtTime(Math.max(0.0001,gain),start+0.02);
-  gainNode.gain.exponentialRampToValueAtTime(0.0001,start+duration);
-  if(panner){panner.pan.value=Math.max(-1,Math.min(1,pan));osc.connect(gainNode);gainNode.connect(panner);panner.connect(sfxGain)}else{osc.connect(gainNode);gainNode.connect(sfxGain)}
-  osc.start(start);
-  osc.stop(start+duration+0.05);
-}
-function stopMusic(){
-  if(musicTimer){clearInterval(musicTimer);musicTimer=null}
-}
-function startMusic(){
-  ensureAudio();
-  if(!audioState.enabled||!audioCtx)return;
-  stopMusic();
-  const themeByRealm=[
-    [220,330,392,330,262,392],
-    [196,294,349,294,220,349],
-    [174,261,329,261,196,329],
-    [196,246,293,246,220,293],
-    [220,277,392,277,330,392]
-  ];
-  musicTimer=setInterval(()=>{
-    const theme=themeByRealm[Math.min(themeByRealm.length-1, realm || 0)];
-    const note=theme[musicBeat%theme.length];
-    musicBeat++;
-    const isBossPhase=boss && bossHp>0;
-    playTone({freq:note,duration:isBossPhase?0.21:0.28,type:isBossPhase?"sawtooth":"triangle",gain:isBossPhase?0.05:0.04,slideTo:note*1.02,pan:(Math.random()-.5)*0.5});
-    if(Math.random()>.62){
-      playTone({freq:note/2,duration:0.42,type:"sine",gain:0.018,slideTo:note/2*1.02,pan:-0.2});
-    }
-  }, boss ? 220 : 380);
-}
-function triggerMenuTone(){
-  ensureAudio();
-  if(!audioState.enabled||!audioCtx)return;
-  playTone({freq:420,duration:0.12,type:"triangle",gain:0.04,slideTo:520});
-  playTone({freq:560,duration:0.16,type:"sine",gain:0.03,slideTo:620,when:0.06});
-}
-function toggleAudio(){
-  audioState.enabled=!audioState.enabled;
-  ensureAudio();
-  updateSoundButton();
-  if(audioState.enabled){
-    if(running || $("#menu").classList.contains("active")) startMusic();
-  }else{
-    stopMusic();
-  }
-}
-$("#soundToggle").addEventListener("click",toggleAudio);
-$("#menuSound").addEventListener("click",triggerMenuTone);
-
-let mr,ms,mc,mp,mt=0;
-function menu3D(){
-  const host=$("#menu3d");mr=new THREE.WebGLRenderer({antialias:true});mr.setPixelRatio(Math.min(devicePixelRatio,2));mr.shadowMap.enabled=true;host.appendChild(mr.domElement);
-  ms=new THREE.Scene();ms.fog=new THREE.Fog(0x101a25,10,55);mc=new THREE.PerspectiveCamera(58,1,.1,100);mc.position.set(0,4.8,11);
-  ms.add(new THREE.HemisphereLight(0xc8deff,0x211810,2));
-  const sun=new THREE.DirectionalLight(0xffd6a0,4);sun.position.set(-7,12,8);sun.castShadow=true;ms.add(sun);
-  const ground=new THREE.Mesh(new THREE.PlaneGeometry(50,70),new THREE.MeshStandardMaterial({color:0x18212a,roughness:.9}));ground.rotation.x=-Math.PI/2;ground.position.z=-15;ground.receiveShadow=true;ms.add(ground);
-  for(let i=0;i<32;i++){let h=2+Math.random()*8,m=new THREE.Mesh(new THREE.BoxGeometry(1+Math.random()*2,h,1+Math.random()*2),new THREE.MeshStandardMaterial({color:0x17212b,roughness:.85}));m.position.set((Math.random()-.5)*30,h/2,-(Math.random()*40+8));m.castShadow=true;m.receiveShadow=true;ms.add(m)}
-  mp=new THREE.Mesh(new THREE.TorusGeometry(2.3,.2,18,64),new THREE.MeshStandardMaterial({color:0xe5b765,emissive:0x815018,emissiveIntensity:2.4,metalness:.4}));mp.position.set(4.7,3,-8);mp.rotation.x=Math.PI/2;ms.add(mp);
-  function rs(){const r=host.getBoundingClientRect();if(!r.width||!r.height)return;mr.setSize(r.width,r.height,false);mc.aspect=r.width/r.height;mc.updateProjectionMatrix()}addEventListener("resize",rs);rs();
-  function loop(){requestAnimationFrame(loop);mt+=.01;mp.rotation.z+=.004;mc.position.x=Math.sin(mt*.2)*1.2;mc.lookAt(0,1.8,-7);mr.render(ms,mc)}loop();
-}
-
-let renderer,scene,camera,clock,player,road=new THREE.Group(),decor=new THREE.Group(),items=new THREE.Group(),bossMesh=null;
-let running=false,paused=false,raf=0,lane=1,targetX=0,jump=0,jv=0,slide=0,speed=21,dist=0,coins=0,life=3,mult=1,realm=0,nextRealm=850,spawnT=0,objects=[],powers={shield:0,magnet:0,boost:0},boss=false,bossHp=0,bossAt=2000,bosses=0;
-const mat=(c,r=.7)=>new THREE.MeshStandardMaterial({color:c,roughness:r});
-const box=(w,h,d,c)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(c));m.castShadow=m.receiveShadow=true;return m};
-
-function initGame(){
-  if(renderer)return;
-  const host=$("#game3d");renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;host.appendChild(renderer.domElement);
-  scene=new THREE.Scene();scene.fog=new THREE.Fog(0x20344b,18,90);camera=new THREE.PerspectiveCamera(65,1,.1,180);camera.position.set(0,4.6,8.5);
-  scene.add(new THREE.HemisphereLight(0xc5ddff,0x2d241d,1.6));const sun=new THREE.DirectionalLight(0xffe1b0,3.6);sun.position.set(-8,14,8);sun.castShadow=true;scene.add(sun);scene.add(road,decor,items);
-  for(let i=0;i<20;i++){const seg=box(7,.22,8,0x292d33);seg.position.set(0,-.1,-i*8);road.add(seg);for(const lx of [-1.17,1.17]){const l=box(.05,.025,7.5,0x9d8965);l.position.set(lx,.03,-i*8);road.add(l)}}
-  const rs=()=>{const r=host.getBoundingClientRect();if(!r.width||!r.height)return;renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()};addEventListener("resize",rs);rs();
-}
-function buildPlayer(){
-  const g=new THREE.Group(),body=box(.82,1.15,.48,0x9b6d36);body.position.y=1.2;g.add(body);
-  const head=new THREE.Mesh(new THREE.SphereGeometry(.34,20,14),mat(0xc99a73));head.position.y=2;head.castShadow=true;g.add(head);
-  const cape=box(.72,.95,.08,0x432a2a);cape.position.set(0,1.25,.29);g.add(cape);
-  for(const sx of [-1,1]){const arm=box(.18,.82,.18,0x9b6d36);arm.position.set(.52*sx,1.25,0);g.add(arm);const leg=box(.22,.9,.25,0x20242a);leg.position.set(.23*sx,.45,0);g.add(leg)}
-  g.userData.parts=[...g.children];return g
-}
-function rebuildDecor(){
-  decor.clear();const R=realms[realm];scene.background=new THREE.Color(R[1]);scene.fog.color.setHex(R[2]);
-  for(let z=-12;z>-150;z-=7){for(const side of [-1,1]){const x=side*(5+Math.random()*7);let o;if(realm===1){o=new THREE.Group();const tr=box(.4,3,.4,0x3b2b20);tr.position.y=1.5;o.add(tr);const crown=box(1.2,.15,.7,0x5bcb9a);crown.position.set(0,3.1,0);o.add(crown)}else if(realm===2){o=new THREE.Mesh(new THREE.ConeGeometry(.75,2.4,5),mat(0x6c4a36));o.rotation.z=Math.PI/2;o.position.y=1.2}else if(realm===3){o=new THREE.Mesh(new THREE.CylinderGeometry(.35,.6,2.2,6),mat(0xa9d5ff));o.position.y=1.1}else if(realm===4){o=new THREE.Mesh(new THREE.CylinderGeometry(.9,1.3,3.2,8),mat(0x5d4e74));o.position.y=1.6}else{o=new THREE.Mesh(new THREE.BoxGeometry(1.1,2.5,1.1),mat(0x596874));o.position.y=1.25}o.position.set(x,0,z);decor.add(o)}}
-}
-function spawn(){
-  const r=Math.random(),ln=Math.floor(Math.random()*3),xx=(ln-1)*2.35;let type=r<.5?"coin":r<.68?"rock":r<.82?"arch":r<.92?"beam":r<.95?"shield":r<.98?"magnet":"boost",m;
-  if(type==="coin"){m=new THREE.Mesh(new THREE.TorusGeometry(.28,.1,10,22),new THREE.MeshStandardMaterial({color:0xf0c85f,emissive:0x6b4b0d,emissiveIntensity:1.3,metalness:.8,roughness:.25}));m.position.y=1.1}
-  else if(type==="rock"){m=new THREE.Mesh(new THREE.DodecahedronGeometry(.7),mat(0x4b3735));m.position.y=.65}
-  else if(type==="beam"){m=box(1.8,.28,.35,0x6c4432);m.position.y=1.45}
-  else if(type==="arch"){m=new THREE.Group();const a=box(.28,2.6,.45,0x3b4148),b=a.clone(),top=box(1.9,.3,.45,0x3b4148);a.position.set(-.8,1.3,0);b.position.set(.8,1.3,0);top.position.set(0,2.45,0);m.add(a,b,top);m.position.y=0}
-  else{m=new THREE.Mesh(new THREE.OctahedronGeometry(.38),new THREE.MeshStandardMaterial({color:type==="shield"?0x62d7ff:type==="magnet"?0xff6f6f:0xffd45d,emissive:type==="shield"?0x1a7690:type==="magnet"?0x6a1515:0x7f5c0b,emissiveIntensity:1.4,metalness:.6,roughness:.35}));m.position.y=1.1}
-  m.position.x=xx;m.position.z=-80;items.add(m);objects.push({mesh:m,type,hit:false})
-}
-function toast(t){$("#toast").textContent=t;clearTimeout(toast.t);toast.t=setTimeout(()=>$("#toast").textContent="",900)}
-function startBoss(){boss=true;bossHp=100;$("#bossHud").classList.add("show");bossMesh=new THREE.Group();const body=new THREE.Mesh(new THREE.SphereGeometry(1.4,18,14),mat(0x47222a));body.scale.set(1.4,1.2,1.1);body.position.y=2.4;bossMesh.add(body);const wingLeft=new THREE.Mesh(new THREE.BoxGeometry(1.8,1.2,0.2),mat(0x9d5d47));wingLeft.position.set(-1.8,2.8,0);wingLeft.rotation.z=.5;bossMesh.add(wingLeft);const wingRight=wingLeft.clone();wingRight.position.x=1.8;wingRight.rotation.z=-.5;bossMesh.add(wingRight);bossMesh.position.set(0,.3,-30);scene.add(bossMesh);playTone({freq:120,duration:1.2,type:"sawtooth",gain:0.12,slideTo:60});}
-function endBoss(){boss=false;bosses++;S.trophies++;coins+=150;$("#bossHud").classList.remove("show");if(bossMesh){scene.remove(bossMesh);bossMesh=null}toast("GUARDIÃO DERROTADO +150 💎");playTone({freq:620,duration:0.18,type:"triangle",gain:0.08,slideTo:780,pan:0});playTone({freq:820,duration:0.22,type:"triangle",gain:0.06,slideTo:980,when:0.1,pan:0.1});}
-function resetRun(){
-  objects.forEach(o=>o.mesh.parent?.remove(o.mesh));objects=[];if(player)scene.remove(player);player=buildPlayer();scene.add(player);player.position.set(0,0,1.2);
-  lane=1;targetX=0;jump=0;jv=0;slide=0;speed=21;dist=0;coins=0;life=3;mult=1;realm=0;nextRealm=850;spawnT=.35;powers={shield:0,magnet:0,boost:0};boss=false;bossHp=0;bossAt=2000;bosses=0;if(bossMesh){scene.remove(bossMesh);bossMesh=null}$("#bossHud").classList.remove("show");
-}
-function start(){show("game");initGame();resetRun();running=true;paused=false;clock=new THREE.Clock();clock.start();if(!S.tutorial){paused=true;$("#tutorial").classList.add("show")}else $("#tutorial").classList.remove("show");startMusic();playTone({freq:330,duration:0.14,type:"triangle",gain:0.05,slideTo:440});}
-function finish(){if(!running)return;running=false;cancelAnimationFrame(raf);const d=Math.floor(dist),xp=Math.floor(d/5)+coins+bosses*100;S.coins+=coins;S.xp+=xp;S.best=Math.max(S.best,d);save();$("#fd").textContent=d+" m";$("#fc").textContent=coins;$("#ft").textContent=S.trophies;show("result");stopMusic();playTone({freq:260,duration:0.18,type:"square",gain:0.06,slideTo:180});playTone({freq:200,duration:0.22,type:"triangle",gain:0.05,slideTo:120,when:0.12});}
-function collect(o){o.hit=true;if(o.type==="coin")coins+=mult;else{powers[o.type]=3;toast((o.type==="shield"?"ESCUDO":o.type==="magnet"?"ÍMÃ":"IMPULSO")+" ATIVADO")}playTone({freq:o.type==="coin"?760:o.type==="shield"?430:o.type==="magnet"?310:500,duration:0.12,type:"triangle",gain:0.06,slideTo:o.type==="coin"?930:560,pan:o.mesh.position.x>0?0.2:-0.2})}
-function hit(o){if(powers.boost>0)return;o.hit=true;if(powers.shield>0){powers.shield=0;toast("ESCUDO QUEBRADO");playTone({freq:220,duration:0.18,type:"square",gain:0.07,slideTo:90});return}life--;toast("IMPACTO!");playTone({freq:180,duration:0.28,type:"square",gain:0.08,slideTo:70});if(life<=0)finish()}
-function action(a){if(!running||paused)return;if(a==="left")lane=Math.max(0,lane-1);if(a==="right")lane=Math.min(2,lane+1);targetX=(lane-1)*2.35;if(a==="up"&&jump===0){jv=7.4;playTone({freq:460,duration:0.16,type:"triangle",gain:0.06,slideTo:640})}if(a==="down"){slide=.55;playTone({freq:220,duration:0.12,type:"square",gain:0.04,slideTo:140})}}
-addEventListener("keydown",e=>{if(["ArrowLeft","a"].includes(e.key))action("left");if(["ArrowRight","d"].includes(e.key))action("right");if(["ArrowUp","w"," "].includes(e.key))action("up");if(["ArrowDown","s"].includes(e.key))action("down");if(e.key==="Escape"){$("#pauseOverlay").classList.add("show");paused=true}});
-let sx=0,sy=0;$("#game").addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$("#game").addEventListener("touchend",e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy)){dx<0?action("left"):action("right")}else{dy<0?action("up"):action("down")}});
-
-function loop(){
-  if(!running)return;raf=requestAnimationFrame(loop);if(paused){clock.getDelta();renderer.render(scene,camera);return}
-  const dt=Math.min(.033,clock.getDelta());speed=Math.min(35,speed+dt*.2);dist+=speed*dt;mult=1+Math.min(4,Math.floor(dist/1200));
-  if(dist>nextRealm){realm=(realm+1)%realms.length;nextRealm+=850;rebuildDecor();$("#realm").textContent=realms[realm][0];toast("NOVO REINO");playTone({freq:420,duration:0.16,type:"triangle",gain:0.05,slideTo:660});startMusic();}
-  if(!boss&&dist>bossAt){startBoss();bossAt+=2600}if(boss){bossHp-=dt*7;$("#bossBar").style.width=Math.max(0,bossHp)+"%";if(bossMesh){bossMesh.position.x=Math.sin(performance.now()*.0015)*3;bossMesh.position.z=-30+Math.sin(performance.now()*.002)*2;bossMesh.rotation.y+=dt*.8}}
-  jump+=jv*dt;jv-=18*dt;if(jump<0){jump=0;jv=0}slide=Math.max(0,slide-dt);player.position.x+=(targetX-player.position.x)*Math.min(1,dt*10);player.position.y=jump;player.scale.y=slide>0?.55:1;
-  const tt=performance.now()*.01;player.userData.parts.forEach((p,i)=>{if(i>2)p.rotation.x=Math.sin(tt+i)*.35});
-  spawnT-=dt;if(spawnT<=0){spawn();spawnT=.45+Math.random()*.45}Object.keys(powers).forEach(k=>powers[k]=Math.max(0,powers[k]-dt));$("#shield").classList.toggle("on",powers.shield>0);$("#magnet").classList.toggle("on",powers.magnet>0);$("#boost").classList.toggle("on",powers.boost>0);
-  const dz=speed*dt*(powers.boost>0?1.55:1);for(const s of road.children){s.position.z+=dz;if(s.position.z>8)s.position.z-=160}for(const d of decor.children){d.position.z+=dz*.35;if(d.position.z>6)d.position.z-=160}objects.forEach(o=>{o.mesh.position.z+=dz;o.mesh.rotation.y+=dt*1.8;if(powers.magnet>0&&o.type==="coin"&&o.mesh.position.z>-14)o.mesh.position.x+=(player.position.x-o.mesh.position.x)*dt*5;if(!o.hit&&Math.abs(o.mesh.position.z-player.position.z)<1&&Math.abs(o.mesh.position.x-player.position.x)<1){if(o.type==="coin"||o.type==="shield"||o.type==="magnet"||o.type==="boost"){collect(o)}else{hit(o)}}    if(o.mesh.position.z>8)o.hit=true;});
-  camera.position.x+=(player.position.x*.18-camera.position.x)*dt*3;camera.position.y=4.6+jump*.08;camera.lookAt(player.position.x*.2,1.2,-8);
-  $("#distance").textContent=Math.floor(dist)+" m";$("#coins").textContent=coins;$("#life").textContent="❤".repeat(life)+"♡".repeat(3-life);$("#mult").textContent="x"+mult;renderer.render(scene,camera);
-  if(boss&&bossHp<=0){endBoss();}
-}
-$("#play").onclick=start;$("#again").onclick=start;$("#home").onclick=()=>{show("menu");stopMusic();};$("#pause").onclick=()=>{paused=true;$("#pauseOverlay").classList.add("show")};$("#resume").onclick=()=>{paused=false;$("#pauseOverlay").classList.remove("show");playTone({freq:390,duration:0.1,type:"triangle",gain:0.04,slideTo:500})};$("#quit").onclick=()=>{show("menu");paused=false;running=false;stopMusic();playTone({freq:280,duration:0.12,type:"triangle",gain:0.04,slideTo:340})};$("#tutorialOk").onclick=()=>{$("#tutorial").classList.remove("show");paused=false;playTone({freq:350,duration:0.12,type:"triangle",gain:0.04,slideTo:470})};
-ui();menu3D();$("#loading").classList.add("hide");updateSoundButton();
-startMusic();
+const err=document.querySelector('#error');let THREE;try{THREE=await import('https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js')}catch(e){err.classList.add('show');err.textContent='Não foi possível carregar o motor 3D. Verifique a conexão e atualize a página.';throw e}
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s),DEF={coins:800,xp:0,best:0,trophies:0,tutorial:false};let S={...DEF};try{Object.assign(S,JSON.parse(localStorage.getItem('maxRealms6')||'{}'))}catch(e){}const realms=[['FORTALEZA CELESTE',0x7890a6,0x20344b,0x2f3036,0xd0aa63],['FLORESTA DE CRISTAL',0x5a8979,0x173b35,0x24352f,0x64e2c1],['DESERTO DE CINZAS',0xc27c50,0x58362e,0x5a453b,0xf2b45d],['CIDADE CONGELADA',0x9bc0d4,0x304e65,0x4c6573,0xc8f2ff],['RUÍNAS LUNARES',0x6c648b,0x2b2845,0x363247,0xbda8ef]];
+function ui(){const lvl=1+Math.floor(Math.sqrt(S.xp/220));$('#wallet').textContent=S.coins;$('#trophies').textContent=S.trophies;$('#level').textContent=lvl;$('#best').textContent='Recorde '+S.best+' m'}function save(){localStorage.setItem('maxRealms6',JSON.stringify(S));ui()}function show(id){$$('.screen').forEach(e=>e.classList.remove('active'));$('#'+id).classList.add('active')}
+/* Áudio: ganho maior, compressor/limiter e resume no clique resolvem o volume baixo e o bloqueio de autoplay. */
+let audioCtx=null,musicGain=null,sfxGain=null,masterGain=null,compressor=null,musicTimer=null,musicBeat=0;const audioState={enabled:true};
+function ensureAudio(){if(audioCtx){if(audioCtx.state==='suspended')audioCtx.resume();return}const Ctx=window.AudioContext||window.webkitAudioContext;if(!Ctx)return;audioCtx=new Ctx();masterGain=audioCtx.createGain();musicGain=audioCtx.createGain();sfxGain=audioCtx.createGain();compressor=audioCtx.createDynamicsCompressor();musicGain.gain.value=.34;sfxGain.gain.value=.58;masterGain.gain.value=.9;compressor.threshold.value=-18;compressor.knee.value=16;compressor.ratio.value=8;compressor.attack.value=.003;compressor.release.value=.18;musicGain.connect(masterGain);sfxGain.connect(masterGain);masterGain.connect(compressor);compressor.connect(audioCtx.destination);if(audioCtx.state==='suspended')audioCtx.resume()}
+function updateSoundButton(){const b=$('#soundToggle');b.textContent=audioState.enabled?'🔊':'🔇';b.classList.toggle('muted',!audioState.enabled);b.setAttribute('aria-pressed',String(audioState.enabled));if(!audioCtx)return;const now=audioCtx.currentTime;musicGain.gain.setTargetAtTime(audioState.enabled?.34:0,now,.05);sfxGain.gain.setTargetAtTime(audioState.enabled?.58:0,now,.05)}
+function playTone({freq=220,duration=.18,type='sine',gain=.08,slideTo=null,when=0,pan=0}={}){if(!audioState.enabled||!audioCtx)return;const start=audioCtx.currentTime+when,o=audioCtx.createOscillator(),g=audioCtx.createGain(),p=audioCtx.createStereoPanner?p=audioCtx.createStereoPanner():null;o.type=type;o.frequency.setValueAtTime(freq,start);if(slideTo)o.frequency.exponentialRampToValueAtTime(Math.max(20,slideTo),start+duration);g.gain.setValueAtTime(.0001,start);g.gain.exponentialRampToValueAtTime(gain,start+.015);g.gain.exponentialRampToValueAtTime(.0001,start+duration);if(p){p.pan.value=Math.max(-1,Math.min(1,pan));o.connect(g);g.connect(p);p.connect(sfxGain)}else{o.connect(g);g.connect(sfxGain)}o.start(start);o.stop(start+duration+.05)}
+function stopMusic(){if(musicTimer){clearInterval(musicTimer);musicTimer=null}}
+function startMusic(){ensureAudio();if(!audioState.enabled||!audioCtx)return;stopMusic();const themes=[[220,330,392,330,262,392],[196,294,349,294,220,349],[174,261,329,261,196,329],[196,246,293,246,220,293],[220,277,392,277,330,392]];musicTimer=setInterval(()=>{const n=themes[Math.min(4,realm||0)][musicBeat++%6],bossNote=boss&&bossHp>0;playTone({freq:n,duration:bossNote?.22:.3,type:bossNote?'sawtooth':'triangle',gain:bossNote?.09:.075,slideTo:n*1.02,pan:(Math.random()-.5)*.45});if(Math.random()>.55)playTone({freq:n/2,duration:.42,type:'sine',gain:.035,slideTo:n/2*1.02,pan:-.2})},boss?220:380)}
+function triggerMenuTone(){ensureAudio();playTone({freq:420,duration:.14,type:'triangle',gain:.1,slideTo:540});playTone({freq:560,duration:.18,type:'sine',gain:.07,slideTo:700,when:.06})}function toggleAudio(){audioState.enabled=!audioState.enabled;ensureAudio();updateSoundButton();if(audioState.enabled){if(running||$('#menu').classList.contains('active'))startMusic()}else stopMusic()}$('#soundToggle').onclick=toggleAudio;$('#menuSound').onclick=triggerMenuTone;
+let mr,ms,mc,mp,mt=0;function menu3D(){const h=$('#menu3d');mr=new THREE.WebGLRenderer({antialias:true});mr.setPixelRatio(Math.min(devicePixelRatio,2));mr.shadowMap.enabled=true;h.appendChild(mr.domElement);ms=new THREE.Scene();ms.fog=new THREE.Fog(0x101a25,10,55);mc=new THREE.PerspectiveCamera(58,1,.1,100);mc.position.set(0,4.8,11);ms.add(new THREE.HemisphereLight(0xc8deff,0x211810,2));const sun=new THREE.DirectionalLight(0xffd6a0,4);sun.position.set(-7,12,8);sun.castShadow=true;ms.add(sun);const ground=new THREE.Mesh(new THREE.PlaneGeometry(50,70),new THREE.MeshStandardMaterial({color:0x18212a,roughness:.9}));ground.rotation.x=-Math.PI/2;ground.position.z=-15;ground.receiveShadow=true;ms.add(ground);for(let i=0;i<32;i++){let hgt=2+Math.random()*8,m=new THREE.Mesh(new THREE.BoxGeometry(1+Math.random()*2,hgt,1+Math.random()*2),new THREE.MeshStandardMaterial({color:0x17212b,roughness:.85}));m.position.set((Math.random()-.5)*30,hgt/2,-(Math.random()*40+8));m.castShadow=true;ms.add(m)}mp=new THREE.Mesh(new THREE.TorusGeometry(2.3,.2,18,64),new THREE.MeshStandardMaterial({color:0xe5b765,emissive:0x815018,emissiveIntensity:2.4,metalness:.4}));mp.position.set(4.7,3,-8);mp.rotation.x=Math.PI/2;ms.add(mp);const rs=()=>{const r=h.getBoundingClientRect();if(!r.width||!r.height)return;mr.setSize(r.width,r.height,false);mc.aspect=r.width/r.height;mc.updateProjectionMatrix()};addEventListener('resize',rs);rs();(function loop(){requestAnimationFrame(loop);mt+=.01;mp.rotation.z+=.004;mc.position.x=Math.sin(mt*.2)*1.2;mc.lookAt(0,1.8,-7);mr.render(ms,mc)})()}
+let renderer,scene,camera,clock,player,road=new THREE.Group(),decor=new THREE.Group(),items=new THREE.Group(),bossMesh=null;let running=false,paused=false,raf=0,lane=1,targetX=0,jump=0,jv=0,slide=0,speed=21,dist=0,coins=0,life=3,mult=1,realm=0,nextRealm=850,spawnT=0,objects=[],powers={shield:0,magnet:0,boost:0},boss=false,bossHp=0,bossAt=2000,bosses=0;const mat=(c,r=.7)=>new THREE.MeshStandardMaterial({color:c,roughness:r}),box=(w,h,d,c)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(c));m.castShadow=m.receiveShadow=true;return m};
+function initGame(){if(renderer)return;const h=$('#game3d');renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;h.appendChild(renderer.domElement);scene=new THREE.Scene();scene.fog=new THREE.Fog(0x20344b,18,90);camera=new THREE.PerspectiveCamera(65,1,.1,180);camera.position.set(0,4.6,8.5);scene.add(new THREE.HemisphereLight(0xc5ddff,0x2d241d,1.6));const sun=new THREE.DirectionalLight(0xffe1b0,3.6);sun.position.set(-8,14,8);sun.castShadow=true;scene.add(sun);scene.add(road,decor,items);for(let i=0;i<20;i++){const seg=box(7,.22,8,0x292d33);seg.position.set(0,-.1,-i*8);road.add(seg);for(const x of [-1.17,1.17]){const l=box(.05,.025,7.5,0x9d8965);l.position.set(x,.03,-i*8);road.add(l)}}const rs=()=>{const r=h.getBoundingClientRect();if(!r.width||!r.height)return;renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()};addEventListener('resize',rs);rs()}
+function buildPlayer(){const g=new THREE.Group(),body=box(.82,1.15,.48,0x9b6d36);body.position.y=1.2;g.add(body);const head=new THREE.Mesh(new THREE.SphereGeometry(.34,20,14),mat(0xc99a73));head.position.y=2;g.add(head);const cape=box(.72,.95,.08,0x432a2a);cape.position.set(0,1.25,.29);g.add(cape);for(const sx of [-1,1]){const arm=box(.18,.82,.18,0x9b6d36);arm.position.set(.52*sx,1.25,0);g.add(arm);const leg=box(.22,.9,.25,0x20242a);leg.position.set(.23*sx,.45,0);g.add(leg)}g.userData.parts=[...g.children];return g}
+function rebuildDecor(){decor.clear();const R=realms[realm];scene.background=new THREE.Color(R[1]);scene.fog.color.setHex(R[2]);for(let z=-12;z>-150;z-=7)for(const side of [-1,1]){const x=side*(5+Math.random()*7);let o;if(realm===1){o=new THREE.Group();const tr=box(.4,3,.4,0x3b2b20);tr.position.y=1.5;o.add(tr);const cr=box(1.2,.15,.7,0x5bcb9a);cr.position.y=3.1;o.add(cr)}else if(realm===2){o=new THREE.Mesh(new THREE.ConeGeometry(.75,2.4,5),mat(0x6c4a36));o.rotation.z=Math.PI/2;o.position.y=1.2}else if(realm===3){o=new THREE.Mesh(new THREE.CylinderGeometry(.35,.6,2.2,6),mat(0xa9d5ff));o.position.y=1.1}else if(realm===4){o=new THREE.Mesh(new THREE.CylinderGeometry(.9,1.3,3.2,8),mat(0x5d4e74));o.position.y=1.6}else{o=new THREE.Mesh(new THREE.BoxGeometry(1.1,2.5,1.1),mat(0x596874));o.position.y=1.25}o.position.x=x;o.position.z=z;decor.add(o)}}
+function spawn(){const r=Math.random(),ln=Math.floor(Math.random()*3),xx=(ln-1)*2.35;let type=r<.5?'coin':r<.68?'rock':r<.82?'arch':r<.92?'beam':r<.95?'shield':r<.98?'magnet':'boost',m;if(type==='coin'){m=new THREE.Mesh(new THREE.TorusGeometry(.28,.1,10,22),new THREE.MeshStandardMaterial({color:0xf0c85f,emissive:0x6b4b0d,emissiveIntensity:1.3,metalness:.8,roughness:.25}));m.position.y=1.1}else if(type==='rock'){m=new THREE.Mesh(new THREE.DodecahedronGeometry(.7),mat(0x4b3735));m.position.y=.65}else if(type==='beam'){m=box(1.8,.28,.35,0x6c4432);m.position.y=1.45}else if(type==='arch'){m=new THREE.Group();const a=box(.28,2.6,.45,0x3b4148),b=a.clone(),top=box(1.9,.3,.45,0x3b4148);a.position.set(-.8,1.3,0);b.position.set(.8,1.3,0);top.position.set(0,2.45,0);m.add(a,b,top)}else{m=new THREE.Mesh(new THREE.OctahedronGeometry(.38),new THREE.MeshStandardMaterial({color:type==='shield'?0x62d7ff:type==='magnet'?0xff6f6f:0xffd45d,emissive:type==='shield'?0x1a7690:type==='magnet'?0x6a1515:0x7f5c0b,emissiveIntensity:1.4,metalness:.6,roughness:.35}));m.position.y=1.1}m.position.x=xx;m.position.z=-80;items.add(m);objects.push({mesh:m,type,hit:false})}
+function toast(t){$('#toast').textContent=t;clearTimeout(toast.t);toast.t=setTimeout(()=>$('#toast').textContent='',900)}function startBoss(){boss=true;bossHp=100;$('#bossHud').classList.add('show');bossMesh=new THREE.Group();const body=new THREE.Mesh(new THREE.SphereGeometry(1.4,18,14),mat(0x47222a));body.scale.set(1.4,1.2,1.1);body.position.y=2.4;bossMesh.add(body);bossMesh.position.set(0,.3,-30);scene.add(bossMesh);playTone({freq:120,duration:1.2,type:'sawtooth',gain:.16,slideTo:60})}function endBoss(){boss=false;bosses++;S.trophies++;coins+=150;$('#bossHud').classList.remove('show');if(bossMesh){scene.remove(bossMesh);bossMesh=null}toast('GUARDIÃO DERROTADO +150 💎');playTone({freq:620,duration:.18,type:'triangle',gain:.12,slideTo:780});playTone({freq:820,duration:.22,type:'triangle',gain:.1,slideTo:980,when:.1})}
+function resetRun(){objects.forEach(o=>o.mesh.parent?.remove(o.mesh));objects=[];if(player)scene.remove(player);player=buildPlayer();scene.add(player);player.position.set(0,0,1.2);lane=1;targetX=0;jump=0;jv=0;slide=0;speed=21;dist=0;coins=0;life=3;mult=1;realm=0;nextRealm=850;spawnT=.35;powers={shield:0,magnet:0,boost:0};boss=false;bossHp=0;bossAt=2000;bosses=0;if(bossMesh){scene.remove(bossMesh);bossMesh=null}$('#bossHud').classList.remove('show')}
+function start(){ensureAudio();show('game');initGame();resetRun();running=true;paused=false;clock=new THREE.Clock();clock.start();if(!S.tutorial){paused=true;$('#tutorial').classList.add('show')}else $('#tutorial').classList.remove('show');startMusic();playTone({freq:330,duration:.14,type:'triangle',gain:.1,slideTo:440})}function finish(){if(!running)return;running=false;cancelAnimationFrame(raf);const d=Math.floor(dist),xp=Math.floor(d/5)+coins+bosses*100;S.coins+=coins;S.xp+=xp;S.best=Math.max(S.best,d);save();$('#fd').textContent=d+' m';$('#fc').textContent=coins;$('#ft').textContent=S.trophies;show('result');stopMusic();playTone({freq:260,duration:.18,type:'square',gain:.12,slideTo:180})}function collect(o){o.hit=true;if(o.type==='coin')coins+=mult;else{powers[o.type]=3;toast((o.type==='shield'?'ESCUDO':o.type==='magnet'?'ÍMÃ':'IMPULSO')+' ATIVADO')}playTone({freq:o.type==='coin'?760:500,duration:.12,type:'triangle',gain:.11,slideTo:o.type==='coin'?930:560,pan:o.mesh.position.x>0?.2:-.2})}function hit(o){if(powers.boost>0)return;o.hit=true;if(powers.shield>0){powers.shield=0;toast('ESCUDO QUEBRADO');playTone({freq:220,duration:.18,type:'square',gain:.13,slideTo:90});return}life--;toast('IMPACTO!');playTone({freq:180,duration:.28,type:'square',gain:.15,slideTo:70});if(life<=0)finish()}
+function action(a){if(!running||paused)return;if(a==='left')lane=Math.max(0,lane-1);if(a==='right')lane=Math.min(2,lane+1);targetX=(lane-1)*2.35;if(a==='up'&&jump===0){jv=7.4;playTone({freq:460,duration:.16,type:'triangle',gain:.1,slideTo:640})}if(a==='down'){slide=.55;playTone({freq:220,duration:.12,type:'square',gain:.08,slideTo:140})}}addEventListener('keydown',e=>{if(['ArrowLeft','a'].includes(e.key))action('left');if(['ArrowRight','d'].includes(e.key))action('right');if(['ArrowUp','w',' '].includes(e.key))action('up');if(['ArrowDown','s'].includes(e.key))action('down');if(e.key==='Escape'){$('#pauseOverlay').classList.add('show');paused=true}});let sx=0,sy=0;$('#game').addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});$('#game').addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy))dx<0?action('left'):action('right');else dy<0?action('up'):action('down')});
+function loop(){if(!running)return;raf=requestAnimationFrame(loop);if(paused){clock.getDelta();renderer.render(scene,camera);return}const dt=Math.min(.033,clock.getDelta());speed=Math.min(35,speed+dt*.2);dist+=speed*dt;mult=1+Math.min(4,Math.floor(dist/1200));if(dist>nextRealm){realm=(realm+1)%realms.length;nextRealm+=850;rebuildDecor();$('#realm').textContent=realms[realm][0];toast('NOVO REINO');playTone({freq:420,duration:.16,type:'triangle',gain:.1,slideTo:660);startMusic()}if(!boss&&dist>bossAt){startBoss();bossAt+=2600}if(boss){bossHp-=dt*7;$('#bossBar').style.width=Math.max(0,bossHp)+'%';if(bossMesh){bossMesh.position.x=Math.sin(performance.now()*.0015)*3;bossMesh.rotation.y+=dt*.8}}jump+=jv*dt;jv-=18*dt;if(jump<0){jump=0;jv=0}slide=Math.max(0,slide-dt);player.position.x+=(targetX-player.position.x)*Math.min(1,dt*10);player.position.y=jump;player.scale.y=slide>0?.55:1;const tt=performance.now()*.01;player.userData.parts.forEach((p,i)=>{if(i>2)p.rotation.x=Math.sin(tt+i)*.35});spawnT-=dt;if(spawnT<=0){spawn();spawnT=.45+Math.random()*.45}Object.keys(powers).forEach(k=>powers[k]=Math.max(0,powers[k]-dt));$('#shield').classList.toggle('on',powers.shield>0);$('#magnet').classList.toggle('on',powers.magnet>0);$('#boost').classList.toggle('on',powers.boost>0);const dz=speed*dt*(powers.boost>0?1.55:1);for(const s of road.children){s.position.z+=dz;if(s.position.z>8)s.position.z-=160}for(const d of decor.children){d.position.z+=dz*.35;if(d.position.z>10)d.position.z-=160}objects.forEach(o=>{o.mesh.position.z+=dz;o.mesh.rotation.y+=dt*1.8;if(powers.magnet>0&&o.type==='coin'&&o.mesh.position.z>-14)o.mesh.position.x+=(player.position.x-o.mesh.position.x)*dt*5;if(!o.hit&&Math.abs(o.mesh.position.z-player.position.z)<1&&Math.abs(o.mesh.position.x-player.position.x)<1){if(['coin','shield','magnet','boost'].includes(o.type))collect(o);else hit(o)}if(o.mesh.position.z>8)o.hit=true});camera.position.x+=(player.position.x*.18-camera.position.x)*dt*3;camera.position.y=4.6+jump*.08;camera.lookAt(player.position.x*.2,1.2,-8);$('#distance').textContent=Math.floor(dist)+' m';$('#coins').textContent=coins;$('#life').textContent='❤'.repeat(life)+'♡'.repeat(3-life);$('#mult').textContent='x'+mult;renderer.render(scene,camera);if(boss&&bossHp<=0)endBoss()}
+$('#play').onclick=start;$('#again').onclick=start;$('#home').onclick=()=>{show('menu');stopMusic()};$('#pause').onclick=()=>{paused=true;$('#pauseOverlay').classList.add('show')};$('#resume').onclick=()=>{paused=false;$('#pauseOverlay').classList.remove('show');ensureAudio();playTone({freq:390,duration:.1,type:'triangle',gain:.08,slideTo:500})};$('#quit').onclick=()=>{show('menu');paused=false;running=false;stopMusic()};$('#tutorialOk').onclick=()=>{$('#tutorial').classList.remove('show');paused=false;ensureAudio();playTone({freq:350,duration:.12,type:'triangle',gain:.08,slideTo:470})};ui();menu3D();$('#loading').classList.add('hide');updateSoundButton()
 })();
 </script>
-</body>
-</html>
+</body></html>
